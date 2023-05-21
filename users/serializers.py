@@ -15,7 +15,7 @@ class UserListSerializer(ModelSerializer):
     class Meta:
         model = User
         total_ads = IntegerField
-        field = ['id', 'username', 'total_ads']
+        fields = ['id', 'username', 'total_ads']
 
 
 class UserCreateUpdateSerializer(ModelSerializer):
@@ -43,10 +43,10 @@ class UserCreateUpdateSerializer(ModelSerializer):
 
     class Meta:
         model = User
-        field = "__all__"
+        fields = "__all__"
 
 
 class LocationSerializer(ModelSerializer):
     class Meta:
         model = Location
-        exclude = ['password']
+        fields = "__all__"
