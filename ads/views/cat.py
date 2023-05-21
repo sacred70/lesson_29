@@ -14,10 +14,14 @@ def root(request):
 class CategoryListView(ListView):
     queryset = Category.objects.order_by("name")
 
-
     def get(self, request, *args, **kwargs):
-        all_categories = Category.objects.all
-        return JsonResponse([cat.serialize() for cat in all_categories], safe=False)
+        super().get(request, *args, **kwargs)
+
+        self.object_list = self.object_list.order_by('name')
+
+        all_cat = [cat.serialize() for cat in self.object_list]
+
+        return JsonResponse(all_cat, safe=False, json_dumps_params={'ensure_ascii': False})
 
 
 @method_decorator(csrf_exempt, name="dispatch")
