@@ -9,9 +9,10 @@ from rest_framework.generics import GenericAPIView, ListAPIView, RetrieveAPIView
     CreateAPIView
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.serializers import ModelSerializer
+from rest_framework.viewsets import ModelViewSet
 
 from users.models import User, Location
-from users.serializers import UserSerializer, UserListSerializer, UserCreateUpdateSerializer
+from users.serializers import UserSerializer, UserListSerializer, UserCreateUpdateSerializer, LocationSerializer
 
 
 class UserPaginator(PageNumberPagination):
@@ -46,7 +47,9 @@ class UserCreateView(CreateAPIView):
     serializer_class = UserCreateUpdateSerializer
 
 
-
+class LocationViewSet(ModelViewSet):
+    queryset = Location.objects.all()
+    serializer_class = LocationSerializer
 
 
 

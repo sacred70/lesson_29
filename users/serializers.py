@@ -44,3 +44,9 @@ class UserCreateUpdateSerializer(ModelSerializer):
     class Meta:
         model = User
         field = "__all__"
+
+
+class LocationSerializer(ModelSerializer):
+    class Meta:
+        model = Location
+        exclude = ['password']
